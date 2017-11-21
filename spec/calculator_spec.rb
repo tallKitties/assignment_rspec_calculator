@@ -107,4 +107,21 @@ describe Calculator do
     end
 
   end
+
+  describe '#sqrt' do
+    
+    it "should provide correct square root for positive integer" do
+      expect(calc.sqrt(4))
+      expect(calc.sqrt(9))
+    end
+
+    it "should raise ArgumentError with negative number" do
+      expect{calc.sqrt(-4)}.to raise_error(ArgumentError)
+    end
+
+    it "should provide correct 2 decimal root for positive floats" do
+      expect(calc.sqrt(4.5)).to be_within(0.01).of(2.12)
+    end
+
+  end
 end
