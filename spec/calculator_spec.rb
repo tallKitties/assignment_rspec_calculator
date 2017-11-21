@@ -54,7 +54,7 @@ describe Calculator do
     end
 
     it "should multiply 2 positive floats" do
-      expect(calc.multiply(1.5,2.25)).to be_within(0.11).of(3.375)
+      expect(calc.multiply(1.5,2.25)).to be_within(0.01).of(3.375)
     end
 
     it "should multiply 1 negative" do
@@ -63,6 +63,30 @@ describe Calculator do
 
     it "should multiply 2 negatives" do
       expect(calc.multiply(-2,-3)).to eq(6)
+    end
+
+  end
+
+  describe '#divide' do
+    
+    it "should divide 2 positive integers, with no remainder" do
+      expect(calc.divide(6,2)).to eq(3)
+    end
+
+    it "should divide 2 positive integers with a remainder as a float" do
+      expect(calc.divide(3,2)).to be_within(0.1).of(1.5)
+    end
+
+    it "should divide floats" do
+      expect(calc.divide(6.5,2)).to be_within(0.01).of(3.25)
+    end
+
+    it "should divide negatives" do
+      expect(calc.divide(-6,2)).to eq(-3)
+    end
+
+    it "should raise ArgumentError if dividing by zero" do
+      expect{calc.divide(6,0)}.to raise_error(ArgumentError)
     end
 
   end
