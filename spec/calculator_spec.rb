@@ -2,6 +2,7 @@ require "calculator"
 
 describe Calculator do
   let(:calc){Calculator.new}
+  let(:string_calc){Calculator.new(true)}
 
   describe '#initialize' do
 
@@ -57,12 +58,9 @@ describe Calculator do
       expect(calc.multiply(1.5,2.25)).to be_within(0.01).of(3.375)
     end
 
-    it "should multiply 1 negative" do
-      expect(calc.multiply(-2,3)).to eq(-6)
-    end
-
-    it "should multiply 2 negatives" do
+    it "should handle negatives correctly" do
       expect(calc.multiply(-2,-3)).to eq(6)
+      expect(calc.multiply(-2,3)).to eq(-6)
     end
 
   end
@@ -121,6 +119,29 @@ describe Calculator do
 
     it "should provide correct 2 decimal root for positive floats" do
       expect(calc.sqrt(4.5)).to be_within(0.01).of(2.12)
+    end
+
+  end
+
+  describe '#memory' do
+
+    before do
+      calc.memory=8
+    end
+
+    it "should store an object in memory" do
+      expect(calc.memory).to eq(8)
+    end
+
+    it "should overwrite previous object in memory" do
+      expect(calc.memory).to eq(8)
+      calc.memory=3
+      expect(calc.memory).to eq(3)
+    end
+
+    it "should clear the object in memory after it is called once" do
+      expect(calc.memory).to eq(8)
+      expect(calc.memory).to be_nil
     end
 
   end
