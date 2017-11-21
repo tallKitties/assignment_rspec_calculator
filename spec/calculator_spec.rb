@@ -145,4 +145,16 @@ describe Calculator do
     end
 
   end
+
+  describe 'stringify set to true' do
+    
+    it "should have stringify set to true" do
+      expect(string_calc.instance_variable_get(:@stringify)).to be true
+    end
+
+    it "should output answer as a string" do
+      expect(string_calc.add(1,2)).to be_a(String)
+    end
+
+  end
 end
