@@ -46,4 +46,24 @@ describe Calculator do
       expect(calc.add(-1.5,-2.3)).to be_within(0.1).of(-3.8)
     end
   end
+
+  describe '#multiply' do
+    
+    it "should multiply 2 positive integers" do
+      expect(calc.multiply(2,3)).to eq(6)
+    end
+
+    it "should multiply 2 positive floats" do
+      expect(calc.multiply(1.5,2.25)).to be_within(0.11).of(3.375)
+    end
+
+    it "should multiply 1 negative" do
+      expect(calc.multiply(-2,3)).to eq(-6)
+    end
+
+    it "should multiply 2 negatives" do
+      expect(calc.multiply(-2,-3)).to eq(6)
+    end
+
+  end
 end
