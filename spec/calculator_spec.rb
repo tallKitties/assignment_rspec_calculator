@@ -90,4 +90,21 @@ describe Calculator do
     end
 
   end
+
+  describe '#pow' do
+    
+    it "should raise positive integers to their power" do
+      expect(calc.pow(2,2)).to eq(4)
+    end
+
+    it "should raise positive floats to their power" do
+      expect(calc.pow(2.5,2)).to be_within(0.01).of(6.25)
+    end
+
+    it "should handle negatives" do
+      expect(calc.pow(-2,2)).to eq(4)
+      expect(calc.pow(2,-2)).to be_within(0.01).of(0.25)
+    end
+
+  end
 end
